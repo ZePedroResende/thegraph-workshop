@@ -1,0 +1,15 @@
+cache/
+out/
+node_modules/
+
+# Ignore Environment Variables!
+.envrc
+
+# Ignore all vscode settings
+.vscode/
+
+# Ignore flattened files
+flattened.txt
+
+.direnv/
+.mnemonic

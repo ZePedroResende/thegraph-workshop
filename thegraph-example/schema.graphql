@@ -1,0 +1,74 @@
+type Factory @entity {
+  id:                           ID!
+  deployers:                    [Account!]!
+  contracts:                    [Account!]!
+}
+
+type Collection @entity {
+  id:                           ID!
+  address:                      Bytes!
+  name:                         String!
+  symbol:                       String!
+  baseTokenURI:                 String!
+  mintPrice:                    String!
+  maxSupply:                    BigInt!
+  currentSupply:                BigInt!
+  launchDate:                   BigInt!
+  payout:                       Bytes!
+  status:                       CollectionStatus!
+  createdAt:                    BigInt!
+  updatedAt:                    BigInt!
+}
+
+
+type Asset @entity {
+  id:                           ID!
+  assetId:                      BigInt!
+  type:                         AssetType
+  contractAddress:              Bytes!
+  owner:                        Address!
+  transfers:                    [Transfer!]! @derivedFrom(field: "asset")
+  minter:                       Address!
+  creator:                      Bytes!
+  URI:                          String
+}
+
+
+type Account @entity {
+  id:                           ID! # ETH addr
+  address:                      Bytes!
+  balances:                     [Balance!]! @derivedFrom(field: "account")
+  transfersFrom:                [Transfer!]! @derivedFrom(field: "from")
+  transfersTo:                  [Transfer!]! @derivedFrom(field: "to")
+  sales:                        [Sale!]! @derivedFrom(field: "seller")
+  buys:                         [Sale!]! @derivedFrom(field: "buyer")
+  cancels:                      [Cancel!]! @derivedFrom(field: "seller")
+  listings:                     [Listing!]! @derivedFrom(field: "seller")
+  timestamp:                    BigInt!
+}
+
+type Transfer implements Event @entity {
+  id:                           ID!
+  transaction:                  Transaction!
+  timestamp:                    BigInt!
+  asset:                        Asset!
+  from:                         Account!
+  fromBalance:                  Balance
+  to:                           Account!
+  toBalance:                    Balance
+  value:                        BigInt!
+  type:                         String!
+}
+
+type Balance @entity {
+  id:                           ID!
+  asset:                        Asset!
+  account:                      Account!
+  value:                        BigInt!
+}
+
+enum CollectionStatus @entity {
+  pending
+  ongoing
+  sold
+}

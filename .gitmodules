@@ -1,0 +1,27 @@
+[submodule "contracts/lib/ds-test"]
+	path = contracts/lib/ds-test
+	url = https://github.com/dapphub/ds-test
+[submodule "contracts/lib/solmate"]
+	path = contracts/lib/solmate
+	url = https://github.com/rari-capital/solmate
+[submodule "contracts/lib/forge-std"]
+	path = contracts/lib/forge-std
+	url = https://github.com/brockelmore/forge-std
+[submodule "contracts/lib/clones-with-immutable-args"]
+	path = contracts/lib/clones-with-immutable-args
+	url = https://github.com/ZeframLou/clones-with-immutable-args
+[submodule "contracts/lib/lil-web3"]
+	path = contracts/lib/lil-web3
+	url = https://github.com/m1guelpf/lil-web3
+[submodule "contracts/lib/openzeppelin-contracts"]
+	path = contracts/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "contracts/lib/openzeppelin-contracts-upgradeable"]
+	path = contracts/lib/openzeppelin-contracts-upgradeable
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable
+[submodule "contracts/lib/playpen"]
+	path = contracts/lib/playpen
+	url = https://github.com/ZeframLou/playpen
+[submodule "contracts/lib/token-migrator"]
+	path = contracts/lib/token-migrator
+	url = https://github.com/ZeframLou/token-migrator
