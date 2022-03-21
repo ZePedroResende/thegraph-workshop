@@ -77,3 +77,6 @@ subgraph.yaml
 
 # jetbrains
 .idea/
+
+# nix
+.direnv/

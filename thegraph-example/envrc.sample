@@ -1,3 +1,5 @@
+use flake
+
 export NETWORK="mainnet"
 export ALCHEMY_API_KEY=""
 export ACCESS_TOKEN=""
