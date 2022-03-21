@@ -22,7 +22,7 @@ contract Factory is Context, ERC165, AccessControlEnumerable {
 
   bool public publicDeployerEnabled;
 
-  event Create721(address, string, string, string, uint256, uint256, uint256, address, address);
+  event Create721(address proxy, string name, string symbol, string baseURI, uint256 mintPrice, uint256 maxSupply, uint256 launchDate, address payout, address creator);
 
   constructor() {
     _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);

@@ -7,10 +7,13 @@
     "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ thegraph-example",
     "create-local": "graph create --node http://localhost:8020/ thegraph-example",
     "remove-local": "graph remove --node http://localhost:8020/ thegraph-example",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 thegraph-example"
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 thegraph-example",
+    "generate": "ts-node ./scripts/build.ts"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.28.1",
-    "@graphprotocol/graph-ts": "0.26.0"
+    "@graphprotocol/graph-ts": "0.26.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.3.2"
   }
 }

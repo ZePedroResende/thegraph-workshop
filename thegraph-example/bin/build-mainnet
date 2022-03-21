@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+source "./bin/functions"
+
+pp_info "deploy" " Building mainnet"
+
+pp_info "deploy" "source .envrc"
+source .envrc
+
+pp_info "deploy" "Generate subgraph.yaml"
+yarn generate
+
+pp_info "deploy" "Generating schema"
+yarn codegen
+
+pp_info "deploy" "Building ..."
+yarn build
+
+pp_success "deploy" "All done !"

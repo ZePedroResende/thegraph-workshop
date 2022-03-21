@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -e
+source "./bin/functions"
+
+pp_info "local-node" " Building mainnet"
+
+pp_info "local-node" "source .envrc"
+source .envrc
+
+pp_info "local-node" "Generate subgraph.yaml"
+yarn generate
+
+pp_info "local-node" "Generating schema"
+yarn codegen
+
+pp_info "local-node" "Building ..."
+yarn build
+
+pp_info "local-node" "docker-compose"
+docker-compose up -d
+
+pp_info "local-node" "create local"
+yarn create-local
+
+pp_info "local-node" "deploy local"
+yarn deploy-local
+
+pp_success "local-node" "All done !"

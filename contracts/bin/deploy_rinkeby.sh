@@ -2,7 +2,7 @@
 
 if [ -z "${@:2}" ]
 then
-  forge create ./src/${1}.sol:${1} -i --rpc-url $ETH_TESTNET_RPC_URL --chain rinkeby
+  forge create ./src/${1}.sol:${1} --private-key $PRIVATE_KEY --rpc-url $ETH_TESTNET_RPC_URL --chain rinkeby
 else
-  forge create ./src/${1}.sol:${1} -i --rpc-url $ETH_TESTNET_RPC_URL --chain rikeby --constructor-args ${@:2}
+  forge create ./src/${1}.sol:${1} --private-key $PRIVATE_KEY --rpc-url $ETH_TESTNET_RPC_URL --chain rikeby --constructor-args ${@:2}
 fi

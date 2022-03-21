@@ -9,28 +9,29 @@ type Collection @entity {
   address:                      Bytes!
   name:                         String!
   symbol:                       String!
-  baseTokenURI:                 String!
-  mintPrice:                    String!
+  baseURI:                      String!
+  mintPrice:                    BigInt!
   maxSupply:                    BigInt!
   currentSupply:                BigInt!
   launchDate:                   BigInt!
   payout:                       Bytes!
+  creator:                      Bytes!
   status:                       CollectionStatus!
+  assets:                       [Asset!]! @derivedFrom(field: "collection")
   createdAt:                    BigInt!
   updatedAt:                    BigInt!
-}
 
+}
 
 type Asset @entity {
   id:                           ID!
-  assetId:                      BigInt!
-  type:                         AssetType
+  tokenId:                      BigInt!
   contractAddress:              Bytes!
-  owner:                        Address!
+  owner:                        Bytes!
   transfers:                    [Transfer!]! @derivedFrom(field: "asset")
-  minter:                       Address!
-  creator:                      Bytes!
-  URI:                          String
+  minter:                       Bytes!
+  collection:                   Collection
+  #URI:                          String
 }
 
 
@@ -40,16 +41,11 @@ type Account @entity {
   balances:                     [Balance!]! @derivedFrom(field: "account")
   transfersFrom:                [Transfer!]! @derivedFrom(field: "from")
   transfersTo:                  [Transfer!]! @derivedFrom(field: "to")
-  sales:                        [Sale!]! @derivedFrom(field: "seller")
-  buys:                         [Sale!]! @derivedFrom(field: "buyer")
-  cancels:                      [Cancel!]! @derivedFrom(field: "seller")
-  listings:                     [Listing!]! @derivedFrom(field: "seller")
   timestamp:                    BigInt!
 }
 
-type Transfer implements Event @entity {
+type Transfer  @entity {
   id:                           ID!
-  transaction:                  Transaction!
   timestamp:                    BigInt!
   asset:                        Asset!
   from:                         Account!

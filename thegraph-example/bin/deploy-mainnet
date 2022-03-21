@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e
+source "./bin/functions"
+
+pp_info "deploy" " Deploying mainnet"
+
+pp_info "deploy" "source .envrc"
+source .envrc
+
+pp_info "deploy" "Generate subgraph.yaml"
+yarn generate
+
+pp_info "deploy" "Generating schema"
+yarn codegen
+
+pp_info "deploy" "Building ..."
+yarn build
+
+pp_warn "deploy" "Deploying ..."
+yarn run graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ "$SUBGRAPH" --access-token "$ACCESS_TOKEN" --debug
+
+pp_success "deploy" "All done !"

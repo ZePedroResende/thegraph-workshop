@@ -1,0 +1,57 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Factory
+    network: rinkeby
+    source:
+      address: '{{FACTORY_CONTRACT}}'
+      abi: Factory
+      startBlock: {{FACTORY_CONTRACT_START_BLOCK}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Create721
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+      abis:
+        - name: Factory
+          file: ./abis/Factory.json
+      eventHandlers:
+        - event: Create721(address,string,string,string,uint256,uint256,uint256,address,address)
+          handler: handleCreate721
+            #        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+            #          handler: handleRoleAdminChanged
+            #        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+            #          handler: handleRoleGranted
+            #        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+            #          handler: handleRoleRevoked
+      file: ./src/mapping.ts
+templates:
+  - kind: ethereum
+    name: PayableERC721Upgradeable
+    network: rinkeby
+    source:
+      abi: PayableERC721Upgradeable
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: PayableERC721Upgradeable
+          file: ./abis/PayableERC721Upgradeable.json
+      eventHandlers:
+        #        - event: OwnershipTransferred(indexed address, indexed address)
+        #          handler: handleOwnershipTransferred
+                - event: Transfer(indexed address,indexed address,indexed uint256)
+                  handler: handleTransfer
+      file: ./src/mapping.ts

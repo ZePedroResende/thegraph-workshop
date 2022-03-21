@@ -1,0 +1,6 @@
+export NETWORK="mainnet"
+export ALCHEMY_API_KEY=""
+export ACCESS_TOKEN=""
+export SUBGRAPH=""
+export FACTORY_CONTRACT=""
+export FACTORY_CONTRACT_START_BLOCK=""
